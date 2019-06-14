@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from "axios";
+import axios from 'axios';
 import { Route, NavLink } from 'react-router-dom'
 
 import './App.css';
@@ -15,7 +15,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log('CDM now running');
     axios
       .get('http://localhost:3333/smurfs')
       .then(res => {
@@ -28,22 +27,36 @@ class App extends Component {
   }
 
   updateSmurfs = (smurfs) => {
-    console.log("hey this got called")
-    console.log(smurfs)
-
     this.setState({
       smurfs: smurfs
     })
   }
+
+
+  deleteSmurf = (e, smurf) => {
+    e.preventDefault();
+    axios
+      .delete(`http://localhost:3333/smurfs/${smurf.id}`)
+      .then(res => {
+        console.log(res.data);
+        this.setState({
+          smurfs: res.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   // XXXadd any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
   // Notice what your map function is looping over and returning inside of Smurfs.
   // You'll need to make sure you have the right properties on state and pass them down to props.
   render() {
     return (
       <div className="App">
-        <nav>
-          <NavLink to="/smurf-form">Add a Smurf</NavLink>
-          <NavLink exact to="/">Back to Smurf Village</NavLink>
+
+        <nav className="navBar">
+          <NavLink className="navLink" to="/smurf-form">Add a Smurf</NavLink>
+          <NavLink className="navLink" exact to="/">Back to Smurf Village</NavLink>
         </nav>
 
         <Route 
@@ -62,8 +75,10 @@ class App extends Component {
             <Smurfs 
               {...props}
               smurfs={this.state.smurfs}
-            />}
-          />
+              deleteSmurf={this.deleteSmurf}
+            />
+          }
+        />
       </div>
     );
   }

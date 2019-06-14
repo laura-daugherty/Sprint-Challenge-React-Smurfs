@@ -1,3 +1,70 @@
 .App {
   text-align: center;
+  margin: 15px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.navBar {
+  height: 400px;
+  background-image: url("./Images/Smurf_Village_Comic_Books.jpg");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 600px;
+  width: 50%;
+}
+
+.navLink {
+  border: 2px solid navy;
+  padding: 5px;
+  margin: 10px;
+  text-decoration: none;
+  color: #65B1FE;
+  background-color: white;
+  height: fit-content;
+}
+
+
+.active {
+  color: white;
+  background-color: #65B1FE;
+}
+
+.title {
+  color: navy;
+
+}
+
+.smurfCard {
+  background:  #65B1FE;
+  border-radius: 10px;
+  border: 2px solid navy;
+  color: white;
+  margin: 15px;
+  padding: 10px;
+  width: 700px;
+
+}
+
+.SmurfFormCont {
+  margin: 15px;
+  color: navy;
+}
+
+.smurfForm {
+  display: flex;
+  flex-flow: column;
+}
+
+.smurfForm > input {
+  margin: 10px;
+  border: 2px solid navy;
+}
+
+.submitButton {
+  margin: 15px;
+  border: 2px solid #65B1FE;
+  border-radius: 10px
 }
